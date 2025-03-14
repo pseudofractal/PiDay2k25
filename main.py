@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation, FFMpegWriter
 
 
-N_SECONDS = 2 * 60 * 60
+N_SECONDS = 60
 FPS = 60
 N_FRAMES = N_SECONDS * FPS
 
@@ -51,7 +51,7 @@ def update(frame):
     global cumulative_length
     x1, y1, x2, y2, L = xs1[frame], ys1[frame], xs2[frame], ys2[frame], Ls[frame]
     (line,) = ax.plot(
-        [x1, x2], [y1, y2], lw=3, color=catppuccin_mocha["teal"], alpha=0.6
+        [x1, x2], [y1, y2], lw=0.1, color=catppuccin_mocha["teal"], alpha=0.2
     )
     lines.append(line)
     cumulative_length += L
