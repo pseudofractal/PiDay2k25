@@ -2,6 +2,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation, FFMpegWriter
 
+
+N_SECONDS = 2 * 60 * 60
+FPS = 60
+N_FRAMES = N_SECONDS * FPS
+
 catppuccin_mocha = {
     "base": "#1e1e2e",
     "text": "#cdd6f4",
@@ -9,9 +14,8 @@ catppuccin_mocha = {
     "teal": "#94e2d5",
 }
 
-n_frames = 1000
-θ1 = 2 * np.pi * np.random.rand(n_frames)
-θ2 = 2 * np.pi * np.random.rand(n_frames)
+θ1 = 2 * np.pi * np.random.rand(N_FRAMES)
+θ2 = 2 * np.pi * np.random.rand(N_FRAMES)
 xs1 = np.cos(θ1)
 ys1 = np.sin(θ1)
 xs2 = np.cos(θ2)
@@ -27,8 +31,8 @@ ax.axis("off")
 ax.set_facecolor(catppuccin_mocha["base"])
 
 
-theta = np.linspace(0, 2 * np.pi, 300)
-ax.plot(np.cos(theta), np.sin(theta), color=catppuccin_mocha["overlay0"], lw=4)
+θ = np.linspace(0, 2 * np.pi, 300)
+ax.plot(np.cos(θ), np.sin(θ), color=catppuccin_mocha["overlay0"], lw=4)
 
 pi_text = ax.text(
     0, -1.3, "", ha="center", va="center", fontsize=12, color=catppuccin_mocha["text"]
@@ -54,12 +58,13 @@ def update(frame):
     pi_est = 4.0 * (frame + 1) / cumulative_length
     pi_text.set_text(f"Estimated π: {pi_est:.10f}  (Chords: {frame + 1})")
     if frame % 100 == 0:
-        print(f"Frame {frame} of {n_frames} processed")
+        print(f"({frame}/{N_FRAMES})")
     return lines + [pi_text]
 
 
+print("Starting animation...")
 anim = FuncAnimation(
-    fig, update, frames=n_frames, init_func=init, blit=True, interval=50, repeat=True
+    fig, update, frames=N_FRAMES, init_func=init, blit=True, repeat=True
 )
-plt.title("Animated π Estimation via Random Chords", color=catppuccin_mocha["text"])
-anim.save("animation.mp4", writer=FFMpegWriter(fps=20))
+plt.title("Estimating π via Random Chords", color=catppuccin_mocha["text"])
+anim.save("animation.mp4", writer=FFMpegWriter(fps=FPS))
