@@ -2,6 +2,8 @@
 
 This is just a simple project I put together for $\pi$ Day. It estimates $\pi$ by drawing random chords inside a circle. There's nothing complicated—just basic geometry and randomness.
 
+Inspired by [Charles Pergiel](https://docs.google.com/document/d/1vii-AshuqPQ14yjkwJNxB6PXcmKewWb3RlOUMyDc5Zs/edit?tab=t.0).
+
 Here's the idea: if you pick two random points on a circle and connect them with a chord, the average length of many chords can be used to approximate pi.
 
 ### Derivation of the formula:
@@ -61,7 +63,7 @@ You'll need Python, NumPy, Matplotlib, Numba, and FFmpeg.
 
 Install dependencies:
 ```pip
-pip install numpy matplotlib numba
+pip install numpy matplotlib
 ```
 
 Run the program:
@@ -71,7 +73,7 @@ python main.py
 
 It will save an mp4 video called `animation.mp4`.\
 You can find a preview here.\
-<video src="animation.mp4" width="1000" height="500" controls></video>
+<video src="animation.mp4" width="500" height="500" controls></video>
 
 
 Happy $\pi$ day.
